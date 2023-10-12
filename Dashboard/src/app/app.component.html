@@ -1,0 +1,13 @@
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"><!--If there is click event happens, the output code
+in sidenav.component.ts return an interface instance. With that instance we are passing it as parameter to our method.-->
+
+  <!--In conclusion, there is root component. In root component we have sidenav and body components. When application
+  bootstraps the root component, it use onToggleSideNav output attribute. With it, there is a method that updates
+  isSideNavCollapsed and screenWidth fields. After update, body tag takes some input as attribute. In the end,
+  the method (getBodyClass method) in body.component.ts works and resize the width of body component.-->
+
+
+</app-sidenav><!--sidenav.component.html dosyasında git-->
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+  <!--app.component.ts dosyasından body componentinin alabileceği inputları alıyor-->
+</app-body><!--body.component.html dosyasına git-->

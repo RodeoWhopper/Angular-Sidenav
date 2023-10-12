@@ -1,0 +1,44 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <!--ngClass yapısını kullanarak belirli koşulların gerçekleşmesi durumunda yeni classlar ekleyebiliyoruz-->
+
+
+  <div class="logo-container">
+    <!--Bu container başta yazan Angular yazısını ve close button'ı içeriyor-->
+    <button class="logo" (click)="toggleCollapsed()">A</button>
+
+
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+    <!--Eğer ngIf true ise bu elementlerin gösterilecek-->
+    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+      <i class="fal fa-times close-icon"></i>
+    </button>
+  </div>
+
+
+
+  <!-- Sidenav elemanlarını bir const içinden for döngüsü ile çekip kutu olarak koyuyoruz-->
+  <ul class="sidenav-nav">
+
+    <!--Navbar parçaları TS dosyasından çekiliyor-->
+    <li class="sidenav-nav-item" *ngFor="let item of navList">
+      <!--For döngüsü ile nav-data.ts dosyasındaki listeyi geziyor-->
+
+
+      <a href="" class="sidenav-nav-link" [routerLink]="item.routeLink"
+      routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <!--Alınan elemanın router link'i listeden çekiliyor-->
+        <!--Eğer belirtilen router link aktif ise yani o route'da ise belirli bir class'ı bu elemana verebiliyoruz-->
+
+
+
+        <i class="sidenav-link-icon" [ngClass]="item.icon"></i> <!--Ikonun sınıfı listeden çekiliyor-->
+
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed"><!--sidenav.component.ts dosyasında tanımlanan fadeInOut animasyonu çalışıyor-->
+          {{item.label}}
+        </span>
+      </a>
+    </li>
+
+
+  </ul>
+</div>
